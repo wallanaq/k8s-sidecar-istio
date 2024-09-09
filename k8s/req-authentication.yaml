@@ -1,0 +1,12 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: hello-api-req-auth
+  namespace: app-sidecar
+spec:
+  selector:
+    matchLabels:
+      app: hello-api
+  jwtRules:
+  - issuer: "http://keycloak-internal.app-sidecar.svc.cluster.local/realms/dev"
+    jwksUri: "http://keycloak-internal.app-sidecar.svc.cluster.local:8080/realms/dev/protocol/openid-connect/certs"

@@ -1,0 +1,19 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: hello-api-authz
+  namespace: app-sidecar
+spec:
+  selector:
+    matchLabels:
+      app: hello-api
+  rules:
+  - to:
+    - operation:
+        paths: ["/info", "/health", "/metrics"]
+  - to:
+    - operation:
+        notPaths: ["/info", "/health", "/metrics"]
+    when:
+    - key: request.auth.principal
+      values: ["*"]
