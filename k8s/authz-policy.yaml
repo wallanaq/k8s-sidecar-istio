@@ -2,7 +2,7 @@ apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
   name: hello-api-authz
-  namespace: app-sidecar
+  namespace: app-sidecar-istio
 spec:
   selector:
     matchLabels:
